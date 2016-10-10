@@ -1,0 +1,10 @@
+{
+  "name": "todo-angular2-firebase",
+  "dependencies": {
+    "firebase": "registry:npm/firebase#3.0.5+20160723033700"
+  },
+  "globalDependencies": {
+    "jasmine": "registry:dt/jasmine#2.5.0+20161003201800",
+    "karma": "registry:dt/karma#0.13.9+20160811111312"
+  }
+}
