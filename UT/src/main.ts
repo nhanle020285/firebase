@@ -12,5 +12,5 @@ if (process.env.NODE_ENV === 'production') {
   enableProdMode();
 }
 
-
+var nhan = 1;
 platformBrowserDynamic().bootstrapModule(AppModule);
