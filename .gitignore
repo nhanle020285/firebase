@@ -1,3 +1,4 @@
-node_modules
-node_modules/**/*.*
-bower_components
+UT/node_modules
+UT/node_modules/**/*.*
+UT/bower_components
+
