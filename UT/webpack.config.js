@@ -11,6 +11,7 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const HotModuleReplacementPlugin =  require('webpack/lib/HotModuleReplacementPlugin');
 
 
 //=========================================================
@@ -70,7 +71,15 @@ config.module = {
   loaders: [
     loaders.typescript,
     loaders.html,
-    loaders.componentStyles
+    loaders.componentStyles,
+    {
+      test: /\.ts$/,
+      loaders: [
+        '@angularclass/hmr-loader?pretty=false&prod=false',
+      ],
+      exclude: [/\.(spec|e2e|d)\.ts$/, /node_modules/],
+      include: [ path.resolve('.')]
+    }
   ]
 };
 
@@ -144,10 +153,12 @@ if (ENV_DEVELOPMENT) {
   config.module.loaders.push(loaders.sharedStyles);
 
   config.plugins.push(new ProgressPlugin());
-
+  config.plugins.push(new HotModuleReplacementPlugin());
   config.devServer = {
     contentBase: './src',
     historyApiFallback: true,
+    hot:true,
+    inline:true,
     host: HOST,
     port: PORT,
     stats: {
